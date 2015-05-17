@@ -1,4 +1,3 @@
-
 /* DriverLib Includes */
 #include "driverlib.h"
 
