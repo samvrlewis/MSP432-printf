@@ -1,21 +1,12 @@
-/******************************************************************************
- *                          Reusable MSP430 printf()
+/*
+ * printf library for the MSP432
  *
- * Description: This printf function was written by oPossum and originally
- *              posted on the 43oh.com forums. For more information on this
- *              code, please see the link below.
- *
- *              http://www.43oh.com/forum/viewtopic.php?f=10&t=1732
- *
- *              A big thanks to oPossum for sharing such great code!
- *
- * Author:  oPossum
- * Source:  http://www.43oh.com/forum/viewtopic.php?f=10&t=1732
- * Date:    10-17-11
- *
- * Note: This comment section was written by Nicholas J. Conn on 06-07-2012
- *       for use on NJC's MSP430 LaunchPad Blog.
- ******************************************************************************/
+ * Largely taken from and inspired from:
+ * 	http://www.msp430launchpad.com/2012/06/using-printf.html
+ *	http://www.43oh.com/forum/viewtopic.php?f=10&t=1732
+ * 
+ * See http://www.samlewis.me for an example implementation.
+ */
 
 #include "stdarg.h"
 #include <stdint.h>
@@ -27,13 +18,11 @@ void sendByte(uint32_t moduleInstance, char c)
 }
 
 static const unsigned long dv[] = {
-//  4294967296      // 32 bit unsigned max
 		1000000000,// +0
 		100000000, // +1
 		10000000, // +2
 		1000000, // +3
 		100000, // +4
-//       65535      // 16 bit unsigned max
 		10000, // +5
 		1000, // +6
 		100, // +7
