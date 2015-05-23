@@ -25,21 +25,6 @@ const eUSCI_UART_Config uartConfig =
     EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION  // Oversampling
 };
 
-void sendString(char* string)
-{
-    char toSend = *string;
-    
-    while (toSend != 0x00)
-    {
-        MAP_UART_transmitData(EUSCI_A0_MODULE, toSend);
-        
-        *string++;
-        
-        toSend = *string;
-    }
-}
-
-
 int main(void)
 {
     /* Halting WDT  */
