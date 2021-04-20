@@ -44,7 +44,8 @@ int main(void)
     MAP_UART_enableModule(EUSCI_A0_MODULE);
     
     MAP_Interrupt_enableMaster();
-
+	
+	/* Register Uart module for printf_P function */
     init_console_print((uint32_t)EUSCI_A0_BASE, UART_transmitData);
     
     /* Initialize values to display */
@@ -62,6 +63,8 @@ int main(void)
         printf_P("Char           %c\r\n", c);
         printf_P("Integer        %i\r\n", i);
         printf_P("Unsigned       %u\r\n", u);
+		printf_P("Integer        %d\r\n", i);
+		printf_P("Unsigned       %d\r\n", u);		
         printf_P("Long           %l\r\n", l);
         printf_P("uNsigned loNg  %n\r\n", n);
         printf_P("heX            %x\r\n", x);

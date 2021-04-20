@@ -89,10 +89,11 @@ void printf_P(char *format, ...)
 				case 'c':// Char
 					putc_P(va_arg(a, char));
 				break;
+				case 'd':// 16 bit Integer
 				case 'i':// 16 bit Integer
 				case 'u':// 16 bit Unsigned
 					i = va_arg(a, int);
-					if(c == 'i' && i < 0) i = -i, putc_P('-');
+					if((c == 'i' || c == 'd') && (i < 0)) i = -i, putc_P('-');
 					xtoa((unsigned)i, dv + 5);
 				break;
 				case 'l':// 32 bit Long
