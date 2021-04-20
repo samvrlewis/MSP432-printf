@@ -4,7 +4,7 @@
 /* Standard Includes */
 #include <stdint.h>
 #include <stdbool.h>
-#include "printf.h"
+#include "uart_print.h"
 
 /* UART Configuration Parameter. These are the configuration parameters to
  * make the eUSCI A UART module to operate with a 9600 baud rate. These
@@ -43,7 +43,10 @@ int main(void)
     /* Enable UART module */
     MAP_UART_enableModule(EUSCI_A0_MODULE);
     
-    MAP_Interrupt_enableMaster();   
+    MAP_Interrupt_enableMaster();
+	
+	/* Register Uart module for printf_P function */
+    init_console_print((uint32_t)EUSCI_A0_BASE, UART_transmitData);
     
     /* Initialize values to display */
     char *s = "printf test";
@@ -56,12 +59,14 @@ int main(void)
     
     while(1)
     {
-        printf(EUSCI_A0_MODULE, "String         %s\r\n", s);
-        printf(EUSCI_A0_MODULE, "Char           %c\r\n", c);
-        printf(EUSCI_A0_MODULE, "Integer        %i\r\n", i);
-        printf(EUSCI_A0_MODULE, "Unsigned       %u\r\n", u);
-        printf(EUSCI_A0_MODULE, "Long           %l\r\n", l);
-        printf(EUSCI_A0_MODULE, "uNsigned loNg  %n\r\n", n);
-        printf(EUSCI_A0_MODULE, "heX            %x\r\n", x);
+        printf_P("String         %s\r\n", s);
+        printf_P("Char           %c\r\n", c);
+        printf_P("Integer        %i\r\n", i);
+        printf_P("Unsigned       %u\r\n", u);
+		printf_P("Integer        %d\r\n", i);
+		printf_P("Unsigned       %d\r\n", u);		
+        printf_P("Long           %l\r\n", l);
+        printf_P("uNsigned loNg  %n\r\n", n);
+        printf_P("heX            %x\r\n", x);
     }
 }
